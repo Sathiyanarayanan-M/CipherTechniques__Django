@@ -1,0 +1,41 @@
+{% extends "home.html"%}
+{% block content %}
+<style>
+    .form {
+  max-width: 500px;
+  margin: auto;
+}
+h1 {
+  max-width: 500px;
+  margin: auto;
+  color: green;
+}
+h3 {
+  max-width: 500px;
+  margin: auto;
+  color: rgb(77, 183, 229);
+}
+</style>
+
+<h1>{{technique_name}}</h1><br>
+<br>
+<br>
+<div class="form" >
+<form action = "" method = "POST"> {% csrf_token%}
+    <span style="color: darkgoldenrod;">
+    {{radio_field}} <br>
+    Plaintext: <br> 
+    {{plaintext_form_field}} <br> <br>
+    Key: <br> 
+    {{key_form_field}} <br> <br>
+    <input type="submit" value="Process">
+</span>
+</form>
+</div>
+<br>
+<br>
+<h3>{{plaintext}}</h3><br>
+<h3>{{key}}</h3><br>
+<h3>{{result_value}}</h3>
+
+{% endblock content %}

@@ -63,7 +63,17 @@ def Affine_c(request, *args, **kwargs):
     form_field = RawForms({})
     if request.method == "POST":
         plaintext = str(request.POST.get("plaintext"))
-        key = str(request.POST.get("key"))
+        try:
+            key = list(map(int, (request.POST.get("key")).split()))
+        except:
+            return render(
+                request,
+                "typeErr.html",
+                {
+                    "message": "Key must be Space seperated integer",
+                    "backto": "Affine",
+                },
+            )
         if request.POST.get("type") == "Encryption":
             enc = "Your Encrypted text is: " + str(Affine().encrypt(plaintext, key))
             return render(
@@ -131,8 +141,17 @@ def ADFGVX_c(request, *args, **kwargs):
                 },
             )
         elif request.POST.get("type") == "Decryption":
-            dec = "Your Decrypted Text is: " + str(ADFGVX().decrypt(plaintext, key))
-
+            try:
+                dec = "Your Decrypted Text is: " + str(ADFGVX().decrypt(plaintext, key))
+            except Exception as e:
+                return render(
+                    request,
+                    "typeErr.html",
+                    {
+                        "message": "Please Enter Valid Key and text",
+                        "backto": "ADFGVX",
+                    },
+                )
             return render(
                 request,
                 "technique.html",
@@ -182,8 +201,17 @@ def ADFGX_c(request, *args, **kwargs):
                 },
             )
         elif request.POST.get("type") == "Decryption":
-            dec = "Your Decrypted Text is: " + str(ADFGX().decrypt(plaintext, key))
-
+            try:
+                dec = "Your Decrypted Text is: " + str(ADFGX().decrypt(plaintext, key))
+            except Exception as e:
+                return render(
+                    request,
+                    "typeErr.html",
+                    {
+                        "message": "Please enter valid Key and text",
+                        "backto": "ADFGX",
+                    },
+                )
             return render(
                 request,
                 "technique.html",
@@ -420,7 +448,17 @@ def Bifid_c(request, *args, **kwargs):
     form_field = RawForms({})
     if request.method == "POST":
         plaintext = str(request.POST.get("plaintext"))
-        key = str(request.POST.get("key"))
+        try:
+            key = int(request.POST.get("key"))
+        except Exception as e:
+            return render(
+                request,
+                "typeErr.html",
+                {
+                    "message": "Key Must be an integer",
+                    "backto": "Bifid",
+                },
+            )
         if request.POST.get("type") == "Encryption":
             enc = "Your Encrypted text is: " + str(Bifid().encrypt(plaintext, key))
             return render(
@@ -579,7 +617,17 @@ def Chaocipher_c(request, *args, **kwargs):
         plaintext = str(request.POST.get("plaintext"))
         key = str(request.POST.get("key"))
         if request.POST.get("type") == "Encryption":
-            enc = "Your Encrypted text is: " + str(Chao().encrypt(plaintext, key))
+            try:
+                enc = "Your Encrypted text is: " + str(Chao().encrypt(plaintext, key))
+            except Exception as e:
+                return render(
+                    request,
+                    "typeErr.html",
+                    {
+                        "message": "Incorrect Key and text",
+                        "backto": "Chaocipher",
+                    },
+                )
             return render(
                 request,
                 "technique.html",
@@ -594,8 +642,17 @@ def Chaocipher_c(request, *args, **kwargs):
                 },
             )
         elif request.POST.get("type") == "Decryption":
-            dec = "Your Decrypted Text is: " + str(Chao().decrypt(plaintext, key))
-
+            try:
+                dec = "Your Decrypted Text is: " + str(Chao().decrypt(plaintext, key))
+            except Exception as e:
+                return render(
+                    request,
+                    "typeErr.html",
+                    {
+                        "message": "Please enter valid Key and text",
+                        "backto": "Chaocipher",
+                    },
+                )
             return render(
                 request,
                 "technique.html",
@@ -624,11 +681,13 @@ def Chaocipher_c(request, *args, **kwargs):
 
 def Columnar_Transposition_c(request, *args, **kwargs):
     from secretpy import ColumnarTransposition
+    from secretpy import CryptMachine
 
     form_field = RawForms({})
     if request.method == "POST":
         plaintext = str(request.POST.get("plaintext"))
         key = str(request.POST.get("key"))
+        cm = CryptMachine(ColumnarTransposition(), key)
         if request.POST.get("type") == "Encryption":
             enc = "Your Encrypted text is: " + str(
                 ColumnarTransposition().encrypt(plaintext, key)
@@ -643,13 +702,21 @@ def Columnar_Transposition_c(request, *args, **kwargs):
                     "result_value": enc,
                     "key": "Your key:" + str(key),
                     "plaintext": "Your plaintext :" + str(plaintext),
-                    "technique_name": "ColumnarTransposition Cipher",
+                    "technique_name": "Columnar Transposition Cipher",
                 },
             )
         elif request.POST.get("type") == "Decryption":
-            dec = "Your Decrypted Text is: " + str(
-                ColumnarTransposition().decrypt(plaintext, key)
-            )
+            try:
+                dec = "Your Decrypted Text is: " + str(cm.decrypt(plaintext))
+            except Exception as e:
+                return render(
+                    request,
+                    "typeErr.html",
+                    {
+                        "message": "Incorrect Key",
+                        "backto": "Columnar_Transposition",
+                    },
+                )
 
             return render(
                 request,
@@ -846,13 +913,15 @@ def Myszkowski_Transposition_c(request, *args, **kwargs):
 
 def Nihilist_c(request, *args, **kwargs):
     from secretpy import Nihilist
+    from secretpy import CryptMachine
 
     form_field = RawForms({})
     if request.method == "POST":
         plaintext = str(request.POST.get("plaintext"))
         key = str(request.POST.get("key"))
+        cm = CryptMachine(Nihilist(), key)
         if request.POST.get("type") == "Encryption":
-            enc = "Your Encrypted text is: " + str(Nihilist().encrypt(plaintext, key))
+            enc = "Your Encrypted text is: " + str(cm.encrypt(plaintext))
             return render(
                 request,
                 "technique.html",
@@ -867,8 +936,17 @@ def Nihilist_c(request, *args, **kwargs):
                 },
             )
         elif request.POST.get("type") == "Decryption":
-            dec = "Your Decrypted Text is: " + str(Nihilist().decrypt(plaintext, key))
-
+            try:
+                dec = "Your Decrypted Text is: " + str(cm.decrypt(plaintext))
+            except Exception as e:
+                return render(
+                    request,
+                    "typeErr.html",
+                    {
+                        "message": "Plaintext Must Be Space Seperated Integer",
+                        "backto": "Nihilist",
+                    },
+                )
             return render(
                 request,
                 "technique.html",
@@ -1075,8 +1153,19 @@ def Polybius_c(request, *args, **kwargs):
                 },
             )
         elif request.POST.get("type") == "Decryption":
-            dec = "Your Decrypted Text is: " + str(Polybius().decrypt(plaintext, key))
-
+            try:
+                dec = "Your Decrypted Text is: " + str(
+                    Polybius().decrypt(plaintext, key)
+                )
+            except Exception as e:
+                return render(
+                    request,
+                    "typeErr.html",
+                    {
+                        "message": "Your text must be integer and 1 to 5",
+                        "backto": "Polybius",
+                    },
+                )
             return render(
                 request,
                 "technique.html",
@@ -1159,8 +1248,16 @@ def Rot5_c(request, *args, **kwargs):
 
     form_field = RawForms({})
     if request.method == "POST":
-        plaintext = str(request.POST.get("plaintext"))
-        key = str(request.POST.get("key"))
+        try:
+            plaintext = int(request.POST.get("plaintext"))
+            plaintext = str(plaintext)
+            key = int(request.POST.get("key"))
+        except Exception as e:
+            return render(
+                request,
+                "typeErr.html",
+                {"message": "Key and Plaintext Must Be Integer", "backto": "Rot5"},
+            )
         if request.POST.get("type") == "Encryption":
             enc = "Your Encrypted text is: " + str(Rot5().encrypt(plaintext, key))
             return render(
@@ -1419,7 +1516,14 @@ def Trifid_c(request, *args, **kwargs):
     form_field = RawForms({})
     if request.method == "POST":
         plaintext = str(request.POST.get("plaintext"))
-        key = str(request.POST.get("key"))
+        try:
+            key = int(request.POST.get("key"))
+        except Exception as e:
+            return render(
+                request,
+                "typeErr.html",
+                {"message": "Key Must Be Integer", "backto": "Trifid"},
+            )
         if request.POST.get("type") == "Encryption":
             enc = "Your Encrypted text is: " + str(Trifid().encrypt(plaintext, key))
             return render(
@@ -1467,12 +1571,54 @@ def Trifid_c(request, *args, **kwargs):
 def Vic_c(request, *args, **kwargs):
     from secretpy import Vic
 
+    alphabet = [
+        u"e",
+        u"t",
+        u"",
+        u"a",
+        u"o",
+        u"n",
+        u"",
+        u"r",
+        u"i",
+        u"s",
+        u"b",
+        u"c",
+        u"d",
+        u"f",
+        u"g",
+        u"h",
+        u"j",
+        u"k",
+        u"l",
+        u"m",
+        u"p",
+        u"q",
+        u"/",
+        u"u",
+        u"v",
+        u"w",
+        u"x",
+        u"y",
+        u"z",
+        u".",
+    ]
     form_field = RawForms({})
     if request.method == "POST":
         plaintext = str(request.POST.get("plaintext"))
-        key = int(request.POST.get("key"))
+        try:
+            key = int(request.POST.get("key"))
+            key = str(key)
+        except Exception as e:
+            return render(
+                request,
+                "typeErr.html",
+                {"message": "Key Must Be Integer", "backto": "Vic"},
+            )
         if request.POST.get("type") == "Encryption":
-            enc = "Your Encrypted text is: " + str(Vic().encrypt(plaintext, key))
+            enc = "Your Encrypted text is: " + str(
+                Vic().encrypt(plaintext, key, alphabet)
+            )
             return render(
                 request,
                 "technique.html",
@@ -1487,7 +1633,9 @@ def Vic_c(request, *args, **kwargs):
                 },
             )
         elif request.POST.get("type") == "Decryption":
-            dec = "Your Decrypted Text is: " + str(Vic().decrypt(plaintext, key))
+            dec = "Your Decrypted Text is: " + str(
+                Vic().decrypt(plaintext, key, alphabet)
+            )
 
             return render(
                 request,

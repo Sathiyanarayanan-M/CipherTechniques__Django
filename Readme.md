@@ -24,5 +24,5 @@ Cipher Techniques are listed below:
 - Vigenere, Gronsfeld, Porta
 - Zigzag(Railfence)
 
-![Screenshots](\sources\Mainpage.jpg)
-![Screenshots](\sources\cipherpage.jpg)
+![Screenshots](/sources/Mainpage.jpg)
+![Screenshots](/sources/cipherpage.jpg)

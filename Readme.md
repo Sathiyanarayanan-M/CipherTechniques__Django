@@ -1,6 +1,6 @@
 ## CipherTechniques using Django
 
-# This website helps to Convert plaintext and vice versa
+# This website helps to Convert Plain Text to Encrypted Text and vice versa
 
 Cipher Techniques are listed below:
 

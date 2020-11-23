@@ -24,5 +24,5 @@ Cipher Techniques are listed below:
 - Vigenere, Gronsfeld, Porta
 - Zigzag(Railfence)
 
-![Screenshots](\CipherTechniques__Django\sources\Mainpage.jpg)
-![Screenshots](\CipherTechniques__Django\sources\cipherpage.jpg)
+![Screenshots](\sources\Mainpage.jpg)
+![Screenshots](\sources\cipherpage.jpg)

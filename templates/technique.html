@@ -1,41 +1,40 @@
 {% extends "home.html"%}
 {% block content %}
-<style>
-    .form {
-  max-width: 500px;
-  margin: auto;
-}
-h1 {
-  max-width: 500px;
-  margin: auto;
-  color: green;
-}
-h3 {
-  max-width: 500px;
-  margin: auto;
-  color: rgb(77, 183, 229);
-}
-</style>
 
-<h1>{{technique_name}}</h1><br>
-<br>
-<br>
-<div class="form" >
-<form action = "" method = "POST"> {% csrf_token%}
-    <span style="color: darkgoldenrod;">
-    {{radio_field}} <br>
-    Plaintext: <br> 
-    {{plaintext_form_field}} <br> <br>
-    Key: <br> 
-    {{key_form_field}} <br> <br>
-    <input type="submit" value="Process">
-</span>
-</form>
+<!-- Form Ended -->
+<div class="container technique-cont">
+  <h1 class="text-center">{{technique_name}}</h1>
+  <form method="POST"> {% csrf_token%}
+    <div class="form-check">
+      <!--radio-->
+      <input class="form-check-input" type="radio" name="type" id="Encryption" value="Encryption" checked>
+      <label class="form-check-label" for="Encryption">
+        Encryption
+      </label>
+    </div>
+    <div class="form-check">
+      <!--radio-->
+      <input class="form-check-input" type="radio" name="type" id="Decryption" value="Decryption">
+      <label class="form-check-label" for="Decryption">
+        Decryption
+      </label>
+    </div>
+    <div class="form-group" style="width: 200px;">
+      <!--plaintext textfield-->
+      <label>Plaintext</label>
+      <input type="text" class="form-control" placeholder="Enter Text" name="plaintext">
+    </div>
+    <div class="form-group" style="width: 200px;">
+      <!--Key textfield-->
+      <label>Key</label>
+      <input type="text" class="form-control" placeholder="Enter Key" name="key"><br>
+      <input type="submit" class="btn btn-primary text-center"> 
+    </div>
+   
+  </form>
+  <h3>{{plaintext}}</h3>
+  <h3>{{key}}</h3>
+  <h3>{{result_value}}</h3>
 </div>
-<br>
-<br>
-<h3>{{plaintext}}</h3><br>
-<h3>{{key}}</h3><br>
-<h3>{{result_value}}</h3>
 
 {% endblock content %}

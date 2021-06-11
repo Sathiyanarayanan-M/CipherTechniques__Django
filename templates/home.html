@@ -1,81 +1,116 @@
-{% load static %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Cipher Techniques</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %} " />
-        <div id="main">
-            <div class="container">
-              <nav>
-                <div class="nav-fostrap">
-                  <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a>ADFGX<span class="arrow-down"></span></a>
-                      <ul class="dropdown">
-                        <li><a href="ADFGX">ADFGX</a></li>
-                        <li><a href="ADFGVX">ADFGVX</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="Affine">Affine</a></li>
-                    <li><a href="Atbash">Atbash</a></li>
-                    <li><a href="Autokey">Autokey</a></li>
-                    <li><a href="Bazeries">Bazeries</a></li>
-                    <li><a href="Beaufort">Beaufort</a></li>
-                    <li><a href="Bifid">Bifid</a></li>
-                    <li><a>Caesar<span class="arrow-down"></span></a>
-                      <ul class="dropdown">
-                        <li><a href="Caesar">Caesar</a></li>
-                        <li><a href="Caesar_Progressive">Caesar Progressive</a></li>
-                      </ul> 
-                    </li>
-                    <li><a href="Chaocipher">Chaocipher</a></li>
-                    <li><a>Transposition<span class="arrow-down"></span></a>
-                      <ul class="dropdown">
-                        <li><a href="Columnar_Transposition">Columnar Transposition</a></li>
-                        <li><a href="Myszkowski_Transposition">Myszkowski Transposition</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="Keyword">Keyword</a></li>
-                    <li><a href="Nihilist">Nihilist</a></li>
-                    <li><a href="Simple_Substitution">Simple Substitution</a></li>
-                    <li><a>Playfair<span class="arrow-down"></span></a>
-                      <ul class="dropdown">
-                        <li><a href="Playfair">Playfair One Square</a></li>
-                        <li><a href="Playfair_Two">Playfair Two Square</a></li>
-                        <li><a href="Playfair_Three">Playfair Three Square</a></li>
-                        <li><a href="Playfair_Four">Playfair Four Square</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="Polybius">Polybius</a></li>
-                    <li><a>Rot<span class="arrow-down"></span></a>
-                      <ul class="dropdown">
-                        <li><a href="Rot13">Rot13</a></li>
-                        <li><a href="Rot5">Rot5</a></li>
-                        <li><a href="Rot18">Rot18</a></li>
-                        <li><a href="Rot47">Rot47</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="Trifid">Trifid</a></li>
-                    <li><a href="Vic">Vic</a></li>
-                    <li><a>Vigenere<span class="arrow-down"></span></a>
-                      <ul class="dropdown">
-                        <li><a href="Vigenere">Vigenere</a></li>
-                        <li><a href="Gronsfeld">Gronsfeld</a></li>
-                        <li><a href="Porta">Porta</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="Zigzag">Zigzag(Railfence)</a></li>
-                  </ul>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cipher Techniques</title>
+
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %} " />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button class="navbar-toggler px-0" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample1"
+        aria-controls="navbarExample1" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarExample1">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto ps-lg-0" style="padding-left: 0.15rem">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <!-- Navbar dropdown -->
+          <li class="nav-item dropdown position-static">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
+              aria-expanded="false">
+              Techniques
+            </a>
+            <!-- Dropdown menu -->
+            <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="
+              border-top-left-radius: 0;
+              border-top-right-radius: 0;
+            ">
+              <div class="container">
+                <div class="row my-4">
+                  <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                    <div class="list-group list-group-flush">
+                      <a href="ADFGX" class="list-group-item list-group-item-action">ADFGX</a>
+                      <a href="ADFGVX" class="list-group-item list-group-item-action">ADFGVX</a>
+                      <a href="Affine" class="list-group-item list-group-item-action">Affine</a>
+                      <a href="Atbash" class="list-group-item list-group-item-action">Atbash</a>
+                      <a href="Autokey" class="list-group-item list-group-item-action">Autokey</a>
+                      <a href="Bazeries" class="list-group-item list-group-item-action">Bazeries</a>
+                      <a href="Beaufort" class="list-group-item list-group-item-action">Beaufort</a>
+                      <a href="Bifid" class="list-group-item list-group-item-action">Bifid</a>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                    <div class="list-group list-group-flush">
+                      <a href="Caesar" class="list-group-item list-group-item-action">Caesar</a>
+                      <a href="Caesar_Progressive" class="list-group-item list-group-item-action">Caesar Progressive</a>
+                      <a href="Chaocipher" class="list-group-item list-group-item-action">Chaocipher</a>
+                      <a href="Columnar_Transposition" class="list-group-item list-group-item-action">Columnar Transposition</a>
+                      <a href="Myszkowski_Transposition" class="list-group-item list-group-item-action">Myszkowski Transposition</a>
+                      <a href="Keyword" class="list-group-item list-group-item-action">Keyword</a>
+                      <a href="Nihilist" class="list-group-item list-group-item-action">Nihilist</a>
+                      <a href="Simple_Substitution" class="list-group-item list-group-item-action">Simple Substitution</a>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                    <div class="list-group list-group-flush">
+                      <a href="Playfair" class="list-group-item list-group-item-action">Playfair One Square</a>
+                      <a href="Playfair_Two" class="list-group-item list-group-item-action">Playfair Two Square</a>
+                      <a href="Playfair_Three" class="list-group-item list-group-item-action">Playfair Three Square</a>
+                      <a href="Playfair_Four" class="list-group-item list-group-item-action">Playfair Four Square</a>
+                      <a href="Polybius" class="list-group-item list-group-item-action">Polybius</a>
+                      <a href="Rot13" class="list-group-item list-group-item-action">Rot13</a>
+                      <a href="Rot5" class="list-group-item list-group-item-action">Rot5</a>
+                      <a href="Rot18" class="list-group-item list-group-item-action">Rot18</a>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="list-group list-group-flush">
+                      <a href="Rot47" class="list-group-item list-group-item-action">Rot47</a>
+                      <a href="Trifid" class="list-group-item list-group-item-action">Trifid</a>
+                      <a href="Vic" class="list-group-item list-group-item-action">Vic</a>
+                      <a href="Vigenere" class="list-group-item list-group-item-action">Vigenere</a>
+                      <a href="Gronsfeld" class="list-group-item list-group-item-action">Gronsfeld</a>
+                      <a href="Porta" class="list-group-item list-group-item-action">Porta</a>
+                      <a href="Zigzag" class="list-group-item list-group-item-action">Zigzag</a>
+                    </div>
+                  </div>
                 </div>
-              </nav>
-          </div>
-          </div>
-    </head>
-    <body>
-      <div class="mbody">
-        {%block content%}
-      replace me
-      {%endblock%}
-  </div>
-             </body>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  {% block content %}
+    {% endblock %}
+  <!-- Bootstrap script CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
+</body>
+
 </html>
